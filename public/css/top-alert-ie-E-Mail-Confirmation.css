@@ -1,0 +1,10 @@
+.top-alert {
+  font-weight: 400;
+  height: 32px;
+  background-color: #DB5F4B;
+}
+
+.top-alert p, .top-alert i {
+  color: white;
+}
+
