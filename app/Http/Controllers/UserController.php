@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use libphonenumber\PhoneNumberUtil;
-use libphonenumber\NumberParseException;
+use libPhoneNumber\PhoneNumberUtil;
+use libPhoneNumber\NumberParseException;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,18 +33,18 @@ class UserController extends Controller
 
         $userPhone = '';
 
-        // $phoneUtil = PhoneNumberUtil::getInstance();
-        // try {
-        //     $parsedNumber = $phoneUtil->parse($phoneNumber, null);
-        //     if ($phoneUtil->isValidNumber($parsedNumber)) {
-        //         // Valid phone number
-        //         $userPhone = $parsedNumber;
-        //     } else {
-        //         // Invalid phone number
-        //     }
-        // } catch (NumberParseException $e) {
-        //     // Invalid phone number format
-        // }
+        $phoneUtil = PhoneNumberUtil::getInstance();
+        try {
+            $parsedNumber = $phoneUtil->parse($phoneNumber, null);
+            if ($phoneUtil->isValidNumber($parsedNumber)) {
+                // Valid phone number
+                $userPhone = $parsedNumber;
+            } else {
+                // Invalid phone number
+            }
+        } catch (NumberParseException $e) {
+            // Invalid phone number format
+        }
 
         $user = User::create([
             'name' => $request->name,
