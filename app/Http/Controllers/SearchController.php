@@ -21,6 +21,7 @@ class SearchController extends Controller
         $query = $request->input('searchQuery');
         switch ($apiName) {
             case 'Ali Express':
+            case 'ali_express':
 
                 // $response = Http::withHeaders([
                 //     'X-RapidAPI-Key' => '80e7514fb3msh1ad443168703a7ep1bc5e5jsnd3785c401df0',
@@ -38,12 +39,11 @@ class SearchController extends Controller
                 ]);
 
                 $data = json_decode($response->body());
-                
+
                 $searchresults = [];
-                foreach($data->result->resultList as $result) {
+                foreach ($data->result->resultList as $result) {
 
-                    $searchresults[] = $result->item; 
-
+                    $searchresults[] = $result->item;
                 }
                 break;
 
@@ -67,6 +67,7 @@ class SearchController extends Controller
 
 
 
-        return view('item_detail', ['searchResults' => $searchresults]);
+        //return view('item_detail', ['searchResults' => $searchresults]);
+        return response()->json($searchresults);
     }
 }

@@ -115,7 +115,7 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 //#####################################################
 
 Route::get('/admin-dashboard', function () {return redirect('sign-in');})->middleware('guest');
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/home', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
 Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest')->name('login');
@@ -139,9 +139,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('billing', function () {
 		return view('pages.billing');
 	})->name('billing');
-	Route::get('tables', function () {
-		return view('pages.tables');
-	})->name('tables');
+	Route::get('tables', [DashboardController::class, 'getTables'])->name('tables');
 	Route::get('rtl', function () {
 		return view('pages.rtl');
 	})->name('rtl');
