@@ -24,30 +24,40 @@
                                 <label class="form-label">Price</label>
                                 <input type="number" class="form-control" name="price" required>
                             </div>
-                            <div class="input-group input-group-outline mb-3">
+                            {{-- <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Main Image</label>
-                                <input type="file" class="form-control" name="image" accept="image/*" required>
+                                <input type="file" class="form-control" name="main-image" accept="image/*" required>
                             </div>
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Additional Images</label>
-                                <input type="file" class="form-control" name="additional_images[]" accept="image/*" multiple>
+                                <input type="file" class="form-control" name="additional_images[]" accept="image/*"
+                                    multiple>
+                                <div id="additional_images_preview" class="mt-2"></div>
+                            </div> --}}
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Main Image</label>
+                                <input type="file" class="form-control" name="main_image" accept="image/*" required>
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Additional Images</label>
+                                <input type="file" class="form-control" name="additional_images[]" accept="image/*"
+                                    multiple id="additional_images">
                                 <div id="additional_images_preview" class="mt-2"></div>
                             </div>
-                            <div class="form-check form-switch d-flex align-items-center mb-3">
-                                <input class="form-check-input" type="checkbox" id="rememberMe">
-                                <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember
-                                    me haahahahahahahahhaha</label>
-                            </div>
+
+
                             <div class="text-center">
                                 <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Submit</button>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+    @dump($errors->all())
 
     <script>
         document.getElementById('additional_images').addEventListener('change', function (e) {
