@@ -21,7 +21,9 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:5|max:255',
+            
         ]);
+        $attributes['role'] = 'admin';
 
         $pass = $attributes['password']; 
         $pass = Hash::make($pass);

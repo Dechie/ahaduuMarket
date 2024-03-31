@@ -52,6 +52,7 @@ class UserController extends Controller
             'phone' => $userPhone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            //'role' => 'customer',
         ]);
 
         Auth::login($user);

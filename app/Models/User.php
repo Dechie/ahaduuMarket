@@ -18,6 +18,9 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+
+     const ROLE_CUSTOMER = 'customer';
+     const ROLE_ADMIN = 'admin';
     protected $fillable = [
         'name',
         'email',
@@ -50,6 +53,14 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function isAdmin() {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isCustomer() {
+        return $this->role === self::ROLE_CUSTOMER;
     }
 
 }

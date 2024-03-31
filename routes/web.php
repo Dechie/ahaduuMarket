@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -136,13 +137,14 @@ Route::post('user-profile', [ProfileController::class, 'update'])->middleware('a
 // Laravel examples routes
 Route::group(['middleware' => 'auth'], function () {
     // Unique URIs for each route
+	Route::get('new-item', function () {
+		return view('pages.new-item');
+	})->name('new-item');
+	Route::post('create-item', [ItemController::class, 'store'])->name('create-item');
 	Route::get('billing', function () {
 		return view('pages.billing');
 	})->name('billing');
 	Route::get('tables', [DashboardController::class, 'getTables'])->name('tables');
-	Route::get('rtl', function () {
-		return view('pages.rtl');
-	})->name('rtl');
 	Route::get('virtual-reality', function () {
 		return view('pages.virtual-reality');
 	})->name('virtual-reality');
