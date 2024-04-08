@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     //
+    public function index() {
+        $items = Item::all();   
+        //return view('pages.items', compact('items')); 
+        return response()->json($items);
+    }
     public function store(Request $request)
     {
         $values = $request->validate([
@@ -24,70 +29,39 @@ class ItemController extends Controller
 
         $image = $request->file('main_image');
         $ext = $image->getClientOriginalExtension();
-        $imagePath = public_path() . '/images/' . $values['title'] . '.' . $ext;
-        $image->move($imagePath);
+        $imagePath = '/images/' . $values['title'] . 'main.' . $ext;
+        $image->move(public_path() . '/images/', $values['title'] . 'main.' . $ext);
 
         $itemValues['main_image'] = 0;
         $item = Item::create($itemValues);
 
         //dd($item->id);
         if ($item) {
-            dd($item["id"]);
-            dd($item);
             $pic = Picture::create([
                 'filename' => $imagePath,
-                'item_id' => $item["id"],
+                'item_id' => $item->id,
             ]);
         }
 
 
-        $counter = 0;
+        $counter = 1;
         if ($request->hasFile('additional_images')) {
             foreach ($request->file('additional_images') as $img) {
                 $ext = $img->getClientOriginalExtension();
-                $imgPath = public_path() . '\/images\/' . $values['title'] . $counter . '.' . $ext;
-                $img->move($imgPath);
+                $imgPath = '/images/' . $values['title'] . 'additional-' . $counter . '.' . $ext;
+                $img->move(public_path() . '/images/', $values['title'] . 'additional-' . $counter . '.' . $ext);
+                $counter++;
 
                 Picture::create([
-                    'filename' => $imagePath,
+                    'filename' => $imgPath,
                     'item_id' => $item->id,
                 ]);
             }
         }
 
-        return back()->with('success', 'Images have been uploaded');
+        //return back()->with('success', 'Images have been uploaded');
+        $items = Item::all();
+        return view('pages.items', compact('items'));
     }
-    public function unstore(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
-            'main_image' => 'required|image',
-            'additional_images.*' => 'nullable|image|max:2048'
-        ]);
-
-        $itemValues = $request->only(['title', 'description', 'price']);
-
-        // Upload main image
-        $mainImage = $request->file('main_image');
-        $mainImagePath = $mainImage->store('images', 'public');
-        $itemValues['main_image'] = $mainImagePath;
-
-        // Create item
-        $item = Item::create($itemValues);
-
-        // Upload additional images
-        if ($request->hasFile('additional_images')) {
-            foreach ($request->file('additional_images') as $additionalImage) {
-                $additionalImagePath = $additionalImage->store('images', 'public');
-                Picture::create([
-                    'filename' => $additionalImagePath,
-                    'item_id' => $item->id // Associate image with item
-                ]);
-            }
-        }
-
-        return back()->with('success', 'Item has been created successfully');
-    }
+    
 }

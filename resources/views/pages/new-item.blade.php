@@ -24,16 +24,7 @@
                                 <label class="form-label">Price</label>
                                 <input type="number" class="form-control" name="price" required>
                             </div>
-                            {{-- <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Main Image</label>
-                                <input type="file" class="form-control" name="main-image" accept="image/*" required>
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Additional Images</label>
-                                <input type="file" class="form-control" name="additional_images[]" accept="image/*"
-                                    multiple>
-                                <div id="additional_images_preview" class="mt-2"></div>
-                            </div> --}}
+                            
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Main Image</label>
                                 <input type="file" class="form-control" name="main_image" accept="image/*" required>

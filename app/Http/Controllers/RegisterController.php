@@ -30,8 +30,8 @@ class RegisterController extends Controller
         $attributes['password'] = $pass;
 
 
-        $admin = Admin::create($attributes);
-        auth()->login($admin);
+        $user = User::create($attributes);
+        auth()->login($user);
         
         return redirect('/home');
     } 

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ItemController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/showSearch/{apiName}', [SearchController::class, 'showSearch'])->name('showSearch');
 Route::post('/search/{apiName}', [SearchController::class, 'search'])->name('search');
+
+Route::get('/items', [ItemController::class, 'index']);
 Route::get('/shop', function(){
     return view('shop');
 })->name('showShop');

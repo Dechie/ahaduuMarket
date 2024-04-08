@@ -99,6 +99,7 @@ Route::get('/', function () {
 Route::get('/shop', function(){
     return view('shop');
 })->name('showShop');
+Route::get('/items', [ItemController::class, 'index']);
 
 Route::get('/showSearch/{apiName}', [SearchController::class, 'showSearch'])->name('showSearch');
 Route::post('/search/{apiName}', [SearchController::class, 'search'])->name('search');
@@ -141,6 +142,7 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('pages.new-item');
 	})->name('new-item');
 	Route::post('create-item', [ItemController::class, 'store'])->name('create-item');
+
 	Route::get('billing', function () {
 		return view('pages.billing');
 	})->name('billing');

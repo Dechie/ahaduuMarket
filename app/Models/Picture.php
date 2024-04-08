@@ -9,7 +9,10 @@ class Picture extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['filename'];
+    protected $fillable = [
+        'filename', 
+        'item_id',
+    ];
 
     public function item() {
         return $this->belongsTo(Item::class, 'item_id', 'id');
