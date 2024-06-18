@@ -31,11 +31,11 @@ use App\Http\Controllers\SessionsController;
 // Route::get('/showSearch/{apiName}', [SearchController::class, 'showSearch'])->name('showSearch');
 // Route::post('/search/{apiName}', [SearchController::class, 'search'])->name('search');
 
-// Route::get('/registerPage', [UserController::class, 'create'])->name('registerPage');
-// Route::post('/register', [UserController::class, 'store'])->name('register');
+Route::get('/registerPage', [UserController::class, 'create'])->name('registerPage');
+Route::post('/register', [UserController::class, 'store'])->name('register');
 
-// Route::get('/loginPage', [UserController::class, 'showLogin'])->name('loginPage');
-// Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::get('/loginPage', [UserController::class, 'showLogin'])->name('loginPage');
+Route::post('/login', [UserController::class, 'login'])->name('login');
 
 
 

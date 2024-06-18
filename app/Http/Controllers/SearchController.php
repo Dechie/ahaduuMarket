@@ -65,8 +65,6 @@ class SearchController extends Controller
                 break;
         }
 
-
-
         //return view('item_detail', ['searchResults' => $searchresults]);
         return response()->json($searchresults);
     }
