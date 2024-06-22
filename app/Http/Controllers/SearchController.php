@@ -18,7 +18,9 @@ class SearchController extends Controller
 
     public function search(Request $request, $apiName)
     {
-        $query = $request->input('searchQuery');
+        $query = $request->input('query');
+                $searchresults = [];
+                $res = [];
         switch ($apiName) {
             case 'Ali Express':
             case 'ali_express':
@@ -31,25 +33,42 @@ class SearchController extends Controller
                 // ]);
 
                 $response = Http::withHeaders([
-                    'X-RapidAPI-Key' => '80e7514fb3msh1ad443168703a7ep1bc5e5jsnd3785c401df0',
+                    'X-RapidAPI-Key' => 'a9116d38d3mshc3b38ce2942b41cp1edeeejsnfcbdcaa65e39',
+
                     'X-RapidAPI-Host' => 'aliexpress-datahub.p.rapidapi.com'
                 ])->get('https://aliexpress-datahub.p.rapidapi.com/item_search_2', [
                     'q' => $query,
-                    'page' => '1'
+                    'page' => '1',
+                    'sort' => 'default'
                 ]);
 
-                $data = json_decode($response->body());
+                $data = json_decode($response->body(), true);
+                 
+                //dd($data);
+                //$res = $data;
+                //var_dump($data);
+                // var_dump($data);
+                // if (isset($data->products)) {
+                //     foreach ($data->result as $result) {
 
-                $searchresults = [];
-                foreach ($data->result->resultList as $result) {
-
-                    $searchresults[] = $result->item;
+                //         $searchresults[] = $result;
+                //     }
+                // } else {
+                //     return response()->json(["error" => "no results found"]);
+                // }
+                
+                
+                $searchresults = $data['result']['resultList'];
+                $result = [];
+                var_dump($searchresults);
+                foreach ($searchresults['item'] as $item) {
+                    $result[] = $item;
                 }
                 break;
 
             case 'Amazon':
                 $response = Http::withHeaders([
-                    'X-RapidAPI-Key' => '80e7514fb3msh1ad443168703a7ep1bc5e5jsnd3785c401df0',
+                    'X-RapidAPI-Key' => 'a9116d38d3mshc3b38ce2942b41cp1edeeejsnfcbdcaa65e39',
                     'X-RapidAPI-Host' => 'amazon-product-data6.p.rapidapi.com'
                 ])->get('https://amazon-product-data6.p.rapidapi.com/product-by-text', [
                     'keyword' => $query,
@@ -66,6 +85,7 @@ class SearchController extends Controller
         }
 
         //return view('item_detail', ['searchResults' => $searchresults]);
-        return response()->json($searchresults);
+        return response()->json($result);
+        //return response()->json(['items' => count($res)]);
     }
 }

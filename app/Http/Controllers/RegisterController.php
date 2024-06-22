@@ -16,13 +16,15 @@ class RegisterController extends Controller
 
     public function store(){
 
-        
+         
         $attributes = request()->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:5|max:255',
             
         ]);
+
+        var_dump($attributes);
         $attributes['role'] = 'admin';
 
         $pass = $attributes['password']; 
@@ -31,7 +33,7 @@ class RegisterController extends Controller
 
 
         $user = User::create($attributes);
-        auth()->login($user);
+        //auth()->login($user);
         
         return redirect('/home');
     } 
