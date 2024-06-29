@@ -20,7 +20,7 @@
                 <div class="col offset-lg-8 text-center mx-auto">
                     <h2 class="text-white section-heading">ሚፈልጉት ሁሉ ከኛ ጋር አለ!</h2>
                     <hr class="light my-4">
-                    <p class="text-faded mb-4">ከየት እቃ ለማዘዝ አስበዋል? ከ Aliexpress ከshein ወይስ ከebay አያስቡ እኛ ከጭንቀቶ ልንገላግሎ መተናል ከ እርሶ ሚጠበቀው ሚፈልጉትን እቃ ብቻ መርጠው ሊንኩን ዌብሳይታችን ላይ ያስገቡ አጠቃላይ ዋጋውን እና የ እቃውን ሙሉ መረጃ ያመጣሎታል እቃዎም በታሰበው ሰዓት ይደርሳል እንደደረሰም አካውንቶ ላይ ባለው ቁጥር ደውለን ያሉበት እናመጣሎታለን!! <br><br>አሐዱ ገበያ</p><a class="btn btn-light btn-xl" role="button" href="{{route('registerPage')}}">Signup/LOGIN!</a>
+                    <!-- <p class="text-faded mb-4">ከየት እቃ ለማዘዝ አስበዋል? ከ Aliexpress ከshein ወይስ ከebay አያስቡ እኛ ከጭንቀቶ ልንገላግሎ መተናል ከ እርሶ ሚጠበቀው ሚፈልጉትን እቃ ብቻ መርጠው ሊንኩን ዌብሳይታችን ላይ ያስገቡ አጠቃላይ ዋጋውን እና የ እቃውን ሙሉ መረጃ ያመጣሎታል እቃዎም በታሰበው ሰዓት ይደርሳል እንደደረሰም አካውንቶ ላይ ባለው ቁጥር ደውለን ያሉበት እናመጣሎታለን!! <br><br>አሐዱ ገበያ</p><a class="btn btn-light btn-xl" role="button">Signup/LOGIN!</a> -->
                 </div>
             </div>
         </div>

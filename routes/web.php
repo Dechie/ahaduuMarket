@@ -112,37 +112,38 @@ Route::post('/search/{apiName}', [SearchController::class, 'search'])->name('sea
 
 
 
-//#####################################################
-//      ADMIN DASHBOARD ROUTES
-//#####################################################
+#####################################################
+#        ADMIN DASHBOARD ROUTES
+#####################################################
 
-// Route::get('/admin-dashboard', function () {return redirect('sign-in');})->middleware('guest');
-// Route::get('/home', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
-// Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
-// Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
-// Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest')->name('login');
-// Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest');
-// Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
-// Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
-// Route::get('verify', function () {
-// 	return view('sessions.password.verify');
-// })->middleware('guest')->name('verify'); 
-// Route::get('/reset-password/{token}', function ($token) {
-// 	return view('sessions.password.reset', ['token' => $token]);
-// })->middleware('guest')->name('password.reset');
+Route::get('/admin-dashboard', function () {return redirect('admin-sign-in');})->middleware('guest');
+Route::get('/admin-home', [DashboardController::class, 'index'])->middleware('auth')->name('admin-dashboard');
+Route::get('admin-sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('admin-sign-up');
+Route::post('admin-sign-up', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('admin-sign-in', [SessionsController::class, 'create'])->middleware('guest')->name('admin-login');
+Route::post('admin-sign-in', [SessionsController::class, 'store'])->middleware('guest');
+Route::post('admin-verify', [SessionsController::class, 'show'])->middleware('guest');
+Route::post('admin-reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('admin-password.update');
+Route::get('admin-verify', function () {
+	return view('admin-sessions.password.verify');
+})->middleware('admin-guest')->name('verify'); 
+Route::get('/admin-reset-password/{token}', function ($token) {
+	return view('admin-sessions.password.reset', ['token' => $token]);
+})->middleware('admin-guest')->name('password.reset');
 
-// Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
-// Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
-// Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
+Route::post('admin-sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('admin-logout');
+Route::get('admin-profile', [ProfileController::class, 'create'])->middleware('auth')->name('admin-profile');
+Route::post('admin-user-profile', [ProfileController::class, 'update'])->middleware('admin-auth');
 
-// // Laravel examples routes
-// Route::group(['middleware' => 'auth'], function () {
-//     // Unique URIs for each route
-// 	Route::get('new-item', function () {
-// 		return view('pages.new-item');
-// 	})->name('new-item');
-// 	Route::post('create-item', [ItemController::class, 'store'])->name('create-item');
+// Laravel examples routes
+Route::group(['middleware' => 'auth'], function () {
+    // Unique URIs for each route
+	Route::get('new-item', function () {
+		return view('pages.new-item');
+	})->name('new-item');
+	Route::post('create-item', [ItemController::class, 'store'])->name('create-item');
 
+});
 // 	Route::get('billing', function () {
 // 		return view('pages.billing');
 // 	})->name('billing');
@@ -150,16 +151,16 @@ Route::post('/search/{apiName}', [SearchController::class, 'search'])->name('sea
 // 	Route::get('virtual-reality', function () {
 // 		return view('pages.virtual-reality');
 // 	})->name('virtual-reality');
-// 	Route::get('notifications', function () {
+// 	Route::get('admin-notifications', function () {
 // 		return view('pages.notifications');
 // 	})->name('notifications');
-// 	Route::get('static-sign-in', function () {
+// 	Route::get('admin-static-sign-in', function () {
 // 		return view('pages.static-sign-in');
-// 	})->name('static-sign-in');
+// 	})->name('admin-static-sign-in');
 // 	Route::get('static-sign-up', function () {
 // 		return view('pages.static-sign-up');
 // 	})->name('static-sign-up');
-// 	Route::get('user-management', function () {
+// 	Route::get('admin-management', function () {
 // 		return view('pages.laravel-examples.user-management');
 // 	})->name('user-management');
 // 	Route::get('user-profile', function () {

@@ -29,7 +29,7 @@
                                         <p class="mb-0">Enter your name, email and password to register</p>
                                     </div>
                                     <div class="card-body">
-                                        <form method="POST" action="{{ route('register') }}">
+                                        <form method="POST" action="{{ route('admin-sign-up') }}">
                                             @csrf
                                             <div class="input-group input-group-outline mt-3">
                                                 <label class="form-label">Name</label>

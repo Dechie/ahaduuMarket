@@ -24,19 +24,23 @@ class SessionsController extends Controller
             'password' => 'required'
         ]);
 
-        if (! auth()->attempt($attributes) ){
+
+
+               // if (! auth()->user()->isAdmin()) {
+        //     abort(403);
+        // }
+
+
+         if (! auth()->attempt($attributes) ){
             throw ValidationException::withMessages([
                 'email' => 'Your provided credentials could not be verified.'
             ]);
         }
 
-        // if (! auth()->user()->isAdmin()) {
-        //     abort(403);
-        // }
-
         session()->regenerate();
 
         return redirect('/admin-dashboard');
+
 
     }
 
@@ -77,7 +81,7 @@ class SessionsController extends Controller
         );
     
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
+                    ? redirect()->route('admin-login')->with('status', __($status))
                     : back()->withErrors(['email' => [__($status)]]);
     }
 
@@ -85,7 +89,7 @@ class SessionsController extends Controller
     {
         auth()->logout();
 
-        return redirect('/sign-in');
+        return redirect('/admin-sign-in');
     }
 
 }

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Navbar -->
-                    <x-navbars.navs.guest signin='login' signup='register'></x-navbars.navs.guest>
+                    <x-navbars.navs.guest signin='admin-login' signup='admin-sign-up'></x-navbars.navs.guest>
                     <!-- End Navbar -->
                 </div>
             </div>
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form" method="POST" action="{{ route('login') }}" class="text-start">
+                                    <form role="form" method="POST" action="{{ route('admin-login') }}" class="text-start">
                                         @csrf
                                         @if (Session::has('status'))
                                         <div class="alert alert-success alert-dismissible text-white" role="alert">
@@ -80,7 +80,7 @@
                                         </div>
                                         <p class="mt-4 text-sm text-center">
                                             Don't have an account?
-                                            <a href="{{ route('register') }}"
+                                            <a href="{{ route('admin-sign-up') }}"
                                                 class="text-primary text-gradient font-weight-bold">Sign up</a>
                                         </p>
                                         <p class="text-sm text-center">

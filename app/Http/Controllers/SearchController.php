@@ -33,7 +33,7 @@ class SearchController extends Controller
                 // ]);
 
                 $response = Http::withHeaders([
-                    'X-RapidAPI-Key' => 'a9116d38d3mshc3b38ce2942b41cp1edeeejsnfcbdcaa65e39',
+                    'X-RapidAPI-Key' => 'c8eecfafc3msh950e4cbf27e89f7p1405e0jsn9876bdfdfa36',
 
                     'X-RapidAPI-Host' => 'aliexpress-datahub.p.rapidapi.com'
                 ])->get('https://aliexpress-datahub.p.rapidapi.com/item_search_2', [
@@ -58,12 +58,12 @@ class SearchController extends Controller
                 // }
                 
                 
-                $searchresults = $data['result']['resultList'];
-                $result = [];
-                var_dump($searchresults);
-                foreach ($searchresults['item'] as $item) {
-                    $result[] = $item;
-                }
+                $searchresults = $data;//['result']['resultList'];
+                // $result = [];
+                // var_dump($searchresults);
+                // foreach ($searchresults['item'] as $item) {
+                //     $result[] = $item;
+                // }
                 break;
 
             case 'Amazon':
@@ -84,8 +84,8 @@ class SearchController extends Controller
                 break;
         }
 
-        //return view('item_detail', ['searchResults' => $searchresults]);
-        return response()->json($result);
+        return response()->json($searchresults);
+        //return response()->json($result);
         //return response()->json(['items' => count($res)]);
     }
 }
