@@ -33,4 +33,9 @@ Route::get('/items', [ItemController::class, 'index']);
 Route::get('/shop', function(){
     return view('shop');
 })->name('showShop');
+Route::post('/test', function (Request $request) {
+    $query = $request->input('query');
+    Log::info('Received test query:', ['query' => $query]);
+    return response()->json(['message' => 'Test query received', 'query' => $query]);
+})->middleware('check.cors');
 

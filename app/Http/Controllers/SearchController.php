@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -16,11 +17,13 @@ class SearchController extends Controller
         return view('search', ['apiName' => $apiName]);
     }
 
-    public function search(Request $request, $apiName)
+    public function search(Request $request, $apiName, $queryy)
     {
         $query = $request->input('query');
                 $searchresults = [];
                 $res = [];
+
+        Log::info('Received search query:', ['query' => $query]);
         switch ($apiName) {
             case 'Ali Express':
             case 'ali_express':
@@ -42,6 +45,7 @@ class SearchController extends Controller
                     'sort' => 'default'
                 ]);
 
+                Log::info('Third-party API response:', ['response' => $response->json()]);
                 $data = json_decode($response->body(), true);
                  
                 //dd($data);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Picture;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use App\Middleware\CheckCors;
 
 
 class ItemController extends Controller
@@ -15,6 +16,7 @@ class ItemController extends Controller
         //return view('pages.items', compact('items')); 
         return response()->json($items);
     }
+
     public function store(Request $request)
     {
         $values = $request->validate([
